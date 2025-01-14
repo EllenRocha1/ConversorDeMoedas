@@ -1,6 +1,6 @@
-package java;
+package converter;
 
-import java.ui.CurrencyConverterUI;
+import converter.ui.CurrencyConverterUI;
 
 public class Main {
     public static void main(String[] args) {

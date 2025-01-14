@@ -1,4 +1,4 @@
-package java.api;
+package converter.api;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -10,14 +10,13 @@ import java.net.URI;
 
 public class ExchangeRateClient {
 
-    private static final Dotenv dotenv = Dotenv.configure().directory("./").load(); // Garante o carregamento do .env
+    private static final Dotenv dotenv = Dotenv.configure().directory("./").load();
     private static final String API_URL = "https://v6.exchangerate-api.com/v6/";
 
     public static double getExchangeRate(String from, String to) throws Exception {
         String apiKey = dotenv.get("API_KEY");
-        System.out.println("Carregando chave da API: " + apiKey);
         if (apiKey == null) {
-            throw new IllegalStateException("A chave da API não foi encontrada no arquivo .env");
+            throw new IllegalStateException("A chave da API não foi encontrada");
         }
 
         String url = API_URL + apiKey + "/pair/" + from + "/" + to;
@@ -33,7 +32,6 @@ public class ExchangeRateClient {
             throw new RuntimeException("Erro na API: " + response.statusCode());
         }
 
-        // Parse o JSON usando Gson
         Gson gson = new Gson();
         JsonObject json = gson.fromJson(response.body(), JsonObject.class);
 
@@ -41,7 +39,6 @@ public class ExchangeRateClient {
             throw new RuntimeException("Erro na resposta da API: " + json.get("result").getAsString());
         }
 
-        // Obtenha a taxa de conversão
         return json.get("conversion_rate").getAsDouble();
     }
 }

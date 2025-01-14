@@ -1,6 +1,6 @@
-package java.ui;
+package converter.ui;
 
-import java.service.CurrencyConverterService;
+import converter.service.CurrencyConverterService;
 import java.util.Scanner;
 
 public class CurrencyConverterUI {

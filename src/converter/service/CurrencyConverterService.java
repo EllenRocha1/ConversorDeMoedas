@@ -1,6 +1,6 @@
-package java.service;
+package converter.service;
 
-import java.api.ExchangeRateClient;
+import converter.api.ExchangeRateClient;
 
 public class CurrencyConverterService {
 
